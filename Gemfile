@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'grape'
+gem "hashie-forbidden_attributes" # Disable strong_params to allow Grape validation
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
