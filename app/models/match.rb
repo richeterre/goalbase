@@ -7,4 +7,13 @@ class Match < ActiveRecord::Base
     join_table: 'matches_away_players',
     class_name: 'Player'
   )
+
+  validates :home_goals, numericality: {
+    greater_than_or_equal_to: 0,
+    only_integer: true
+  }
+  validates :away_goals, numericality: {
+    greater_than_or_equal_to: 0,
+    only_integer: true
+  }
 end
