@@ -4,6 +4,8 @@ module API
       class Match < Grape::Entity
         expose :home_goals
         expose :away_goals
+        expose :home_players, using: Entities::Player
+        expose :away_players, using: Entities::Player
       end
     end
 
