@@ -21,11 +21,17 @@ module API
         params do
           requires :home_goals, type: Integer
           requires :away_goals, type: Integer
+          requires :home_player_uuids, type: Array[String]
+          requires :away_player_uuids, type: Array[String]
         end
         post do
+          home_players = Player.where(uuid: params[:home_player_uuids])
+          away_players = Player.where(uuid: params[:away_player_uuids])
           Match.create!({
             home_goals: params[:home_goals],
-            away_goals: params[:away_goals]
+            away_goals: params[:away_goals],
+            home_players: home_players,
+            away_players: away_players
           })
         end
       end
