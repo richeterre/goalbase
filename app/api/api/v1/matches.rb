@@ -19,10 +19,10 @@ module API
 
         desc "Create a new match"
         params do
-          requires :home_goals, type: Integer, "Goals scored by home players"
-          requires :away_goals, type: Integer, "Goals scored by away players"
-          requires :home_player_uuids, type: Array[String], "The match's home players"
-          requires :away_player_uuids, type: Array[String], "The match's away players"
+          requires :home_goals, type: Integer, desc: "Goals scored by home players"
+          requires :away_goals, type: Integer, desc: "Goals scored by away players"
+          requires :home_player_uuids, type: Array[String], desc: "The match's home players"
+          requires :away_player_uuids, type: Array[String], desc: "The match's away players"
         end
         post do
           home_players = Player.where(uuid: params[:home_player_uuids])
