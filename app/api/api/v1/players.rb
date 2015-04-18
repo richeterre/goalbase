@@ -17,7 +17,7 @@ module API
 
         desc "Create a new player"
         params do
-          requires :name, type: String, desc: "The player's name"
+          requires :name, type: String, allow_blank: false, desc: "The player's name"
         end
         post do
           Player.create!({
