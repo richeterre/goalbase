@@ -1,10 +1,18 @@
 module API
   module V1
+    module Entities
+      class Player < Grape::Entity
+        expose :uuid
+        expose :name
+      end
+    end
+
     class Players < Grape::API
       resource :players do
         desc "Return a list of all players"
         get do
-          Player.all
+          players = Player.all
+          present players, with: Entities::Player
         end
 
         desc "Create a new player"

@@ -1,10 +1,18 @@
 module API
   module V1
+    module Entities
+      class Match < Grape::Entity
+        expose :home_goals
+        expose :away_goals
+      end
+    end
+
     class Matches < Grape::API
       resource :matches do
         desc "Return a list of all matches"
         get do
-          Match.all
+          matches = Match.all
+          present matches, with: Entities::Match
         end
 
         desc "Create a new match"
