@@ -16,4 +16,14 @@ class Match < ActiveRecord::Base
     greater_than_or_equal_to: 0,
     only_integer: true
   }
+  validates :home_players, length: { minimum: 1 }
+  validates :away_players, length: { minimum: 1 }
+  validate :has_distinct_home_and_away_players
+
+  private
+    def has_distinct_home_and_away_players
+      if home_players.any? && away_players.any? && (home_players & away_players).any?
+        errors.add(:match, "cannot have players on both home and away team")
+      end
+    end
 end
