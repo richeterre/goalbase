@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418185225) do
+ActiveRecord::Schema.define(version: 20150418171552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "matches", force: :cascade do |t|
+  create_table "matches", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "home_goals"
     t.integer  "away_goals"
     t.datetime "created_at", null: false
@@ -25,26 +25,25 @@ ActiveRecord::Schema.define(version: 20150418185225) do
   end
 
   create_table "matches_away_players", id: false, force: :cascade do |t|
-    t.integer "match_id"
-    t.integer "player_id"
+    t.uuid "match_id"
+    t.uuid "player_id"
   end
 
   add_index "matches_away_players", ["match_id"], name: "index_matches_away_players_on_match_id", using: :btree
   add_index "matches_away_players", ["player_id"], name: "index_matches_away_players_on_player_id", using: :btree
 
   create_table "matches_home_players", id: false, force: :cascade do |t|
-    t.integer "match_id"
-    t.integer "player_id"
+    t.uuid "match_id"
+    t.uuid "player_id"
   end
 
   add_index "matches_home_players", ["match_id"], name: "index_matches_home_players_on_match_id", using: :btree
   add_index "matches_home_players", ["player_id"], name: "index_matches_home_players_on_player_id", using: :btree
 
-  create_table "players", force: :cascade do |t|
+  create_table "players", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.uuid     "uuid",       default: "uuid_generate_v4()", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -2,7 +2,7 @@ module API
   module V1
     module Entities
       class Player < Grape::Entity
-        expose :uuid
+        expose :id
         expose :name
       end
     end
