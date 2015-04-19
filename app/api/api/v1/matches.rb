@@ -2,6 +2,7 @@ module API
   module V1
     module Entities
       class Match < Grape::Entity
+        expose :id
         expose :home_goals
         expose :away_goals
         expose :home_players, using: Entities::Player
