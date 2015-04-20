@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe API::V1 do
   players_path = "/api/v1/players"
+
   describe "GET #{players_path}" do
     it "returns an empty array of players" do
       get players_path
@@ -24,6 +25,19 @@ describe API::V1 do
           }
         ].to_json
       end
+    end
+  end
+
+  context "with valid attributes" do
+    it "creates a new player" do
+      expect {
+        post players_path, FactoryGirl.attributes_for(:player)
+      }.to change(Player, :count).by(1)
+    end
+
+    it "has the right response status code when creating a new player" do
+      post players_path, FactoryGirl.attributes_for(:player)
+      expect(response.status).to eq(201)
     end
   end
 end
