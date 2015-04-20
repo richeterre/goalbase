@@ -9,4 +9,21 @@ describe API::V1 do
       expect(JSON.parse(response.body)).to eq []
     end
   end
+
+  context "when a player exists" do
+    describe "GET #{players_path}" do
+      it "returns the player" do
+        @player = FactoryGirl.create(:player)
+
+        get players_path
+        expect(response.status).to eq(200)
+        expect(response.body).to eq [
+          {
+            id: @player.id,
+            name: @player.name
+          }
+        ].to_json
+      end
+    end
+  end
 end
