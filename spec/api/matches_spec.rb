@@ -73,4 +73,12 @@ describe API::V1 do
       expect(response.status).to eq(200)
     end
   end
+
+  it "deletes an existing match" do
+    @match = FactoryGirl.create(:match)
+
+    expect {
+      delete "#{matches_path}/#{@match.id}"
+    }.to change(Match, :count).by(-1)
+  end
 end
