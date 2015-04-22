@@ -41,13 +41,13 @@ describe API::V1 do
 
   context "with valid attributes" do
     before (:each) do
-      match = FactoryGirl.create(:match)
+      @match = FactoryGirl.create(:match)
       @match_params = {
-          home_goals: match.home_goals,
-          away_goals: match.away_goals,
-          home_player_ids: match.home_players.map(&:id),
-          away_player_ids: match.away_players.map(&:id)
-        }
+        home_goals: @match.home_goals,
+        away_goals: @match.away_goals,
+        home_player_ids: @match.home_players.map(&:id),
+        away_player_ids: @match.away_players.map(&:id)
+      }
     end
 
     it "creates a new match" do
@@ -59,6 +59,18 @@ describe API::V1 do
     it "has the right response status code when creating a new match" do
       post matches_path, @match_params
       expect(response.status).to eq(201)
+    end
+
+    it "updates an existing match" do
+      @updated_match_params = {
+        home_goals: 1,
+        away_goals: 2,
+        home_player_ids: @match.away_players.map(&:id),
+        away_player_ids: @match.home_players.map(&:id)
+      }
+
+      put "#{matches_path}/#{@match.id}", @updated_match_params
+      expect(response.status).to eq(200)
     end
   end
 end
