@@ -9,9 +9,9 @@ module API
 
     class Players < Grape::API
       resource :players do
-        desc "Return a list of all players"
+        desc "Return an alphabetical list of all players"
         get do
-          players = Player.all
+          players = Player.order(name: :asc)
           present players, with: Entities::Player
         end
 

@@ -28,6 +28,27 @@ describe API::V1 do
     end
   end
 
+  context "when several players exist" do
+    describe "GET #{players_path}" do
+      it "returns the players in alphabetical order" do
+        @player1 = FactoryGirl.create(:player, name: "B")
+        @player2 = FactoryGirl.create(:player, name: "A")
+
+        get players_path
+        expect(response.body).to eq [
+          {
+            id: @player2.id,
+            name: @player2.name
+          },
+          {
+            id: @player1.id,
+            name: @player1.name
+          }
+        ].to_json
+      end
+    end
+  end
+
   context "with valid attributes" do
     it "creates a new player" do
       expect {
