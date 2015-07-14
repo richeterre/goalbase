@@ -24,6 +24,13 @@ module API
             name: params[:name]
           })
         end
+
+        route_param :id do
+          desc "Deletes a player"
+          delete do
+            Player.find(params[:id]).destroy
+          end
+        end
       end
     end
   end

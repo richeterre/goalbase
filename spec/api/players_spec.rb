@@ -61,4 +61,12 @@ describe API::V1 do
       expect(response.status).to eq(201)
     end
   end
+
+  it "deletes an existing player" do
+    @player = FactoryGirl.create(:player)
+
+    expect {
+      delete "#{players_path}/#{@player.id}"
+    }.to change(Player, :count).by(-1)
+  end
 end
