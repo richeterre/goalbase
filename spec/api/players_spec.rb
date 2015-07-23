@@ -21,7 +21,8 @@ describe API::V1 do
         expect(response.body).to eq [
           {
             id: @player.id,
-            name: @player.name
+            name: @player.name,
+            rating: @player.rating.round(2)
           }
         ].to_json
       end
@@ -38,11 +39,13 @@ describe API::V1 do
         expect(response.body).to eq [
           {
             id: @player2.id,
-            name: @player2.name
+            name: @player2.name,
+            rating: @player2.rating.round(2)
           },
           {
             id: @player1.id,
-            name: @player1.name
+            name: @player1.name,
+            rating: @player1.rating.round(2)
           }
         ].to_json
       end

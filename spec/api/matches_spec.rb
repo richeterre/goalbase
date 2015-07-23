@@ -27,11 +27,13 @@ describe API::V1 do
             away_goals: @match.away_goals,
             home_players: [
               id: @home_player.id,
-              name: @home_player.name
+              name: @home_player.name,
+              rating: @home_player.rating.round(2)
             ],
             away_players: [
               id: @away_player.id,
-              name: @away_player.name
+              name: @away_player.name,
+              rating: @away_player.rating.round(2)
             ]
           }
         ].to_json
