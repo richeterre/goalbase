@@ -11,7 +11,7 @@ describe RatingEngine do
       match1 = FactoryGirl.create(:match, home_goals: 0, away_goals: 0)
       match2 = FactoryGirl.create(:match, home_goals: 1, away_goals: 1)
       rating = RatingEngine.calculate_rating([match1, match2], [])
-      expect(rating).to be_within(0.01).of(3.33)
+      expect(rating).to eq(3.333)
     end
 
     it "calculates the correct rating for defeats" do
@@ -34,7 +34,7 @@ describe RatingEngine do
       match1 = FactoryGirl.create(:match, home_goals: 0, away_goals: 0)
       match2 = FactoryGirl.create(:match, home_goals: 1, away_goals: 1)
       rating = RatingEngine.calculate_rating([], [match1, match2])
-      expect(rating).to be_within(0.01).of(3.33)
+      expect(rating).to eq(3.333)
     end
 
     it "calculates the correct rating for defeats" do
@@ -57,7 +57,7 @@ describe RatingEngine do
       match1 = FactoryGirl.create(:match, home_goals: 0, away_goals: 0)
       match2 = FactoryGirl.create(:match, home_goals: 1, away_goals: 1)
       rating = RatingEngine.calculate_rating([match1], [match2])
-      expect(rating).to be_within(0.01).of(3.33)
+      expect(rating).to eq(3.333)
     end
 
     it "calculates the correct rating for defeats" do
@@ -75,7 +75,7 @@ describe RatingEngine do
       match4 = FactoryGirl.create(:match, home_goals: 1, away_goals: 0)
 
       rating = RatingEngine.calculate_rating([match1, match2], [match3, match4])
-      expect(rating).to be_within(0.001).of(4.166)
+      expect(rating).to eq(4.167)
     end
   end
 end

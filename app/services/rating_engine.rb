@@ -23,7 +23,8 @@ class RatingEngine
       }.reduce(:+)
     end
 
-    return (home_points + away_points) * 10.0 / max_points
+    rating = (home_points + away_points) * 10.0 / max_points
+    return rating.round(3)
   end
 
   def self.calculate_points(goals_for, goals_against)
