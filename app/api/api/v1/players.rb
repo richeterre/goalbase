@@ -4,9 +4,6 @@ module API
       class Player < Grape::Entity
         expose :id
         expose :name
-        expose :rating do |player, options|
-          player.rating.round(2)
-        end
       end
     end
 
