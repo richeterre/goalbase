@@ -4,6 +4,7 @@ module API
       version 'v1'
       mount API::V1::Players
       mount API::V1::Matches
+      mount API::V1::Rankings
     end
   end
 end

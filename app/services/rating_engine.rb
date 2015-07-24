@@ -5,7 +5,7 @@ class RatingEngine
 
     max_points = (home_match_count + away_match_count) * 3
 
-    return 0 if max_points == 0
+    return 0.0 if max_points == 0
 
     if home_matches.empty?
       home_points = 0
@@ -27,13 +27,15 @@ class RatingEngine
     return rating.round(3)
   end
 
-  def self.calculate_points(goals_for, goals_against)
-    if goals_for > goals_against
-      return 3
-    elsif goals_for < goals_against
-      return 0
-    else
-      return 1
+  private
+
+    def self.calculate_points(goals_for, goals_against)
+      if goals_for > goals_against
+        return 3
+      elsif goals_for < goals_against
+        return 0
+      else
+        return 1
+      end
     end
-  end
 end
