@@ -12,9 +12,9 @@ module API
 
     class Matches < Grape::API
       resource :matches do
-        desc "Return a list of all matches"
+        desc "Return a list of all matches in descending order of creation (newest first)"
         get do
-          matches = Match.all
+          matches = Match.order(created_at: :desc)
           present matches, with: Entities::Match
         end
 

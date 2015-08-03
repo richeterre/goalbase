@@ -39,6 +39,46 @@ describe API::V1 do
     end
   end
 
+  context "when several matches exist" do
+    describe "GET #{matches_path}" do
+      it "returns the matches in descending order of creation" do
+        @match1 = FactoryGirl.create(:match, home_goals: 1, away_goals: 0)
+        @match2 = FactoryGirl.create(:match, home_goals: 0, away_goals: 1)
+
+        get matches_path
+        expect(response.status).to eq(200)
+        expect(response.body).to eq [
+          {
+            id: @match2.id,
+            home_goals: @match2.home_goals,
+            away_goals: @match2.away_goals,
+            home_players: [
+              id: @match2.home_players[0].id,
+              name: @match2.home_players[0].name
+            ],
+            away_players: [
+              id: @match2.away_players[0].id,
+              name: @match2.away_players[0].name
+            ]
+          },
+          {
+            id: @match1.id,
+            home_goals: @match1.home_goals,
+            away_goals: @match1.away_goals,
+            home_players: [
+              id: @match1.home_players[0].id,
+              name: @match1.home_players[0].name
+            ],
+            away_players: [
+              id: @match1.away_players[0].id,
+              name: @match1.away_players[0].name
+            ]
+          }
+        ].to_json
+      end
+    end
+  end
+
   context "with valid attributes" do
     before (:each) do
       @match = FactoryGirl.create(:match)
