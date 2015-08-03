@@ -9,7 +9,7 @@ module API
 
     class Rankings < Grape::API
       resource :rankings do
-        desc "Returns an ordered list of player rankings"
+        desc "Returns an list of player rankings in descending rating order"
         get do
           rankings = Player.all.map { |player|
             {
