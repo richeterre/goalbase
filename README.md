@@ -1,7 +1,7 @@
 Goalbase
 ========
 
-Goalbase serves as a backend for the reactive MVVM showcase app [ObjectiveGoal](https://github.com/richeterre/ObjectiveGoal).
+Goalbase serves as a backend for the reactive MVVM showcase apps [SwiftGoal](https://github.com/richeterre/SwiftGoal) and [ObjectiveGoal](https://github.com/richeterre/ObjectiveGoal).
 
 It is built using the [Grape](https://github.com/intridea/grape) API framework, mounted on a vanilla [Rails 4](http://rubyonrails.org/) installation.
 
@@ -25,7 +25,7 @@ and check that it works by hitting the API endpoints:
     http://localhost:3000/api/v1/players
     http://localhost:3000/api/v1/matches
 
-Both should display an empty JSON array, as you don't have any data yet. To change that, clone [ObjectiveGoal](https://github.com/richeterre/ObjectiveGoal) and launch it on your iOS simulator.
+Both should display an empty JSON array, as you don't have any data yet. To change that, clone [SwiftGoal](https://github.com/richeterre/SwiftGoal) and launch it on your iOS simulator. Make sure that the base URL `http://localhost:3000/api/v1/` is set up correctly in the app's settings.
 
 License
 -------
